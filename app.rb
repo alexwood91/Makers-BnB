@@ -10,5 +10,9 @@ class MakersBnb < Sinatra::Base
     'Hello World'
   end
 
+  get '/register' do 
+    erb :register
+  end
+
   run! if app_file == $0
 end
