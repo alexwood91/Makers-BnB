@@ -2,9 +2,11 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'setup_database'
 require './lib/room'
+require './lib/user'
 
 class MakersBnb < Sinatra::Base
   configure :development do
+    enable :sessions # make sessions hash available
     register Sinatra::Reloader
   end
 
@@ -13,15 +15,14 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/register' do
-    @registered = !params[:registered].nil?
+    @user = User.find(session[:id])
     erb :register
   end
 
   post '/register' do
-    @email = params[:email]
-    @password = params[:password]
-    Database.query('INSERT INTO users (email, pass) VALUES ($1, $2);', [@email, @password])
-    redirect '/register?registered=1'
+    user = User.create(email: params[:email], password: params[:password])
+    session[:id] = user.id
+    redirect '/register'
   end
 
   get '/sign-in' do

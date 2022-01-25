@@ -8,7 +8,7 @@ feature "Register" do
     fill_in('password_confirm', with: 'Seekrit')
     click_button('save')
 
-    expect(page).to have_content "You've registered successfully"
+    expect(page).to have_content "Welcome, example@example.com"
   end
 
 end
