@@ -5,6 +5,7 @@ For our first group project we would like to build a web app that allows users t
 # User Stories
 
 - As a user, so I can access the app, I can create an account.
+- As a user, so I can make a decision, I can view a list of rooms
 - As an owner, so I can make money, I would like to list my room.
 
 - As an owner, so I can make more money, I would like to list multiple spaces.
