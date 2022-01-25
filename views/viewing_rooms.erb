@@ -1,3 +1,8 @@
 Welcome to Makers BnB!<br/>
 
-<%= @room.name %>
+<ul>
+  <% @rooms.each do |room| %>
+  <li><%= room %></li>
+  <% end %>
+  </ul>
+  

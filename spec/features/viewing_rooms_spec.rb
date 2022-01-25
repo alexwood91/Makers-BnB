@@ -7,6 +7,7 @@ feature 'viewing rooms' do
   end
 
   scenario 'a user sees a list of rooms' do
+    Database.query("INSERT INTO rooms VALUES (1, 'Premier Inn');")
     visit ('/available')
     expect(page).to have_content "Premier Inn"
   end

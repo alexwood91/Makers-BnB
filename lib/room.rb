@@ -1,3 +1,5 @@
+require 'pg'
+
 class Room
 
   attr_reader :name
@@ -6,8 +8,8 @@ class Room
     @name = name
   end
 
-  def name
-    @name
+  def self.all
+    result = Database.query('SELECT * FROM rooms;')
+    result.map { |room| room['name'] }
   end
-
 end
