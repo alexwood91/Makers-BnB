@@ -12,7 +12,7 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/available' do
-    @room = Room.new("Premier Inn")
+    @rooms = Room.all
     erb :viewing_rooms
   end
 
