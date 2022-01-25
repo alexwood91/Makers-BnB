@@ -44,5 +44,15 @@ class MakersBnb < Sinatra::Base
     erb :viewing_rooms
   end
 
+  post '/available' do
+    @newroom = params[:new_room]
+    Database.query("INSERT INTO rooms (name) VALUES('#{@newroom}')")
+    redirect '/available'
+  end
+
+  get '/new' do
+    erb :new
+  end
+
   run! if app_file == $0
 end
