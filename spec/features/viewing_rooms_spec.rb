@@ -8,7 +8,6 @@ feature 'viewing rooms' do
 
   scenario 'a user sees a list of rooms' do
     visit ('/available')
-    room = Room.new("Premier Inn")
     expect(page).to have_content "Premier Inn"
   end
 end
