@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require_relative 'setup_database'
 require './lib/room'
 
 class MakersBnb < Sinatra::Base
