@@ -45,8 +45,7 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/available' do
-    @newroom = params[:new_room]
-    Database.query("INSERT INTO rooms (name) VALUES ($1);", [@newroom])
+    Room.create(name: params[:new_room])
     redirect '/available'
   end
 

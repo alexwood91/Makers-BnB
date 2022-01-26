@@ -3,7 +3,6 @@ feature 'adding a new room' do
     visit ('/new')
     fill_in('new_room', with: 'Apartment')
     click_button('Submit')
-
     expect(page).to have_content('Apartment')
   end
 end
