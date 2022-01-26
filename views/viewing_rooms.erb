@@ -1,8 +1,16 @@
 Welcome to Makers BnB!<br/>
-
+<a href='/rooms/new'>Make new room</a><br/>
+Here's what's currently available:<br/>
 <ul>
   <% @rooms.each do |room| %>
-  <li><%= room %></li>
+  <li><%= room.name %><br/>
+  Description:<br/>
+  <%= room.description %><br/>
+  Price:<br/>
+  £<%= room.price %><br/>
+  <a href="/request"><button>Request</button>
+  </a>
+  </li>
   <% end %>
   </ul>
   

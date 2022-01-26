@@ -6,7 +6,7 @@ For our first group project we would like to build a web app that allows users t
 
 - As a user, so I can access the app, I can create an account.
 - As a user, so I can make a decision, I can view a list of rooms
-- As an owner, so I can make money, I would like to list my room.
+- As an owner, so I can make money, I would like to add my room.
 
 - As an owner, so I can make more money, I would like to list multiple spaces.
 
@@ -20,3 +20,5 @@ For our first group project we would like to build a web app that allows users t
 - As an owner, so I'm not double booked, currently booked rooms should not show available.
 
 - As an owner, so I can choose the best customer, I would like to be able to have multiple requests for one room.
+
+- as a user, so I can enjoy using the site, I want it to look pretty!
