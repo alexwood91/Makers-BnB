@@ -39,17 +39,17 @@ class MakersBnb < Sinatra::Base
     end
   end
   
-  get '/available' do
+  get '/rooms' do
     @rooms = Room.all
     erb :viewing_rooms
   end
 
-  post '/available' do
+  post '/rooms' do
     Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto])
-    redirect '/available'
+    redirect '/rooms'
   end
 
-  get '/new' do
+  get '/rooms/new' do
     erb :new
   end
 
