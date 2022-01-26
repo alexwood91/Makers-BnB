@@ -1,0 +1,5 @@
+ <% if @user %>
+  <h1>Welcome, <%= @user.email %></h1>
+<% else %>
+  <a href="/users/new">Register</a> or <a href="/sessions/new">Log-in</a>
+ <% end %>

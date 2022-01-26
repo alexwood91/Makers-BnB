@@ -24,7 +24,11 @@ class User
  
   def self.find(id)
     return nil unless id
+
     result = Database.query("select id, email, pass from users where id = $1;", [id])
+
+    return nil unless result.count > 0
+
     User.new(id: result[0]['id'], email: result[0]['email'], password: result[0]['pass'])
   end
  

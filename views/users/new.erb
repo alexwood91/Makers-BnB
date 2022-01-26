@@ -1,8 +1,4 @@
- <% if @user %>
-  <h1>Welcome, <%= @user.email %></h1>
- <% end %>
-
-<form action="/register" method="post">
+<form action="/users" method="post">
   <input type="text" name="email" placeholder="E-Mail:" /><br>
   <input type="password" name="password" placeholder="Password:" /><br>
   <input type="password" name="password_confirm" placeholder="Confirm Password" /><br>

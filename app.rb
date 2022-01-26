@@ -10,43 +10,45 @@ class MakersBnb < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  before do
+    @user = User.find(session[:id])
+  end
+
   get '/' do
-    'Hello World'
+    erb :index
   end
 
-  get '/register' do
-    @user = User.find(session[:id])
-    erb :register
+  get '/users/new' do
+    erb :'/users/new'
   end
 
-  post '/register' do
-    user = User.create(email: params[:email], password: params[:password])
-    session[:id] = user.id
-    redirect '/register'
+  post '/users' do
+    User.create(email: params[:email], password: params[:password])
+    session.clear
+    redirect '/sessions/new?registered=true'
   end
 
-  get '/sign-in' do
-    @user = User.find(session[:id])
-    erb :'sign-in'
+  get '/sessions/new' do
+    @registered = !params[:registered].nil?
+    erb :'/sessions/new'
   end
 
-  post '/sign-in' do
+  post '/sessions' do
     user = User.signin(email: params[:email], password: params[:password])
     User.find(user.id)
     session[:id] = user.id
-    p "sessiona after signin:"
-    p session
-    redirect '/sign-in'
+    redirect '/'
   end
-  
+
+  post '/sessions/delete' do
+    session.clear
+    redirect '/'
+  end
+
   get '/available' do
     @rooms = Room.all
     erb :viewing_rooms
   end
 
-  post '/logoff' do
-    session.clear
-    redirect '/'
-  end
   run! if app_file == $0
 end
