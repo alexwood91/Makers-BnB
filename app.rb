@@ -4,12 +4,8 @@ require_relative 'setup_database'
 require './lib/room'
 
 class MakersBnb < Sinatra::Base
-  configure :development do
+  configure :test, :development do
     register Sinatra::Reloader
-  end
-
-  get '/' do
-    'Hello World'
   end
 
   get '/register' do
