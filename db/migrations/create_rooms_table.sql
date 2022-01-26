@@ -1,1 +1,1 @@
-CREATE TABLE rooms (id SERIAL PRIMARY KEY, name VARCHAR(60), description VARCHAR(500), price VARCHAR(7));
+CREATE TABLE rooms (id SERIAL PRIMARY KEY, name VARCHAR(60), description VARCHAR(500), price VARCHAR(7), datefrom DATE, dateto DATE); 
