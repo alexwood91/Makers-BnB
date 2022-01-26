@@ -1,6 +1,9 @@
- <% if @user %> 
-<h1>Welcome, <%= @user.email %></h1>
- <% end %> 
+ <% if @user %>
+  <h1>Welcome, <%= @user.email %></h1>
+  <% else %>
+  <h1>Welcome </h1>
+<% end %>
+
 <form action="/register" method="post">
   <input type="text" name="email" placeholder="E-Mail:" /><br>
   <input type="password" name="password" placeholder="Password:" /><br>
@@ -11,4 +14,3 @@
 </form>
 <br>
 <br>
-

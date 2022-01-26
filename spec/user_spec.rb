@@ -1,5 +1,6 @@
 require 'database'
 require './lib/user'
+require 'bcrypt'
 
 describe '.create' do
   it 'creates a new user' do
@@ -27,5 +28,12 @@ end
 describe '.find' do
   it 'returns nil if there is no ID given' do
     expect(User.find(nil)).to eq nil
+  end
+end
+
+describe '.create' do
+  it 'hashes the password using BCrypt' do
+    expect(BCrypt::Password).to receive(:create).with('password123').and_return("encrypted_password")
+    User.create(email: 'test@example.com', password: 'password123')
   end
 end

@@ -5,8 +5,8 @@ require './lib/room'
 require './lib/user'
 
 class MakersBnb < Sinatra::Base
+  enable :sessions # make sessions hash available
   configure :development do
-    enable :sessions # make sessions hash available
     register Sinatra::Reloader
   end
 
@@ -15,13 +15,20 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/register' do
+    p "get register p session [:id]:"
+    p session
+    p session[:id]
     @user = User.find(session[:id])
+    p "user:"
+    p @user
     erb :register
   end
 
   post '/register' do
     user = User.create(email: params[:email], password: params[:password])
     session[:id] = user.id
+    p "post register:"
+    p session
     redirect '/register'
   end
 
