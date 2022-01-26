@@ -45,7 +45,7 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/available' do
-    Room.create(name: params[:new_room])
+    Room.create(name: params[:new_room], description: params[:description], price: params[:price])
     redirect '/available'
   end
 
