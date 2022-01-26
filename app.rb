@@ -15,36 +15,28 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/register' do
-    p "get register p session [:id]:"
-    p session
-    p session[:id]
     @user = User.find(session[:id])
-    p "user:"
-    p @user
     erb :register
   end
 
   post '/register' do
     user = User.create(email: params[:email], password: params[:password])
     session[:id] = user.id
-    p "post register:"
-    p session
     redirect '/register'
   end
 
   get '/sign-in' do
+    @user = User.find(session[:id])
     erb :'sign-in'
   end
 
   post '/sign-in' do
-    @email = params[:email]
-    @password = params[:password]
-    result = Database.query('SELECT email, pass FROM users WHERE email=$1;', [@email])
-    if result.ntuples >= 1 && result[0]['pass'] == @password
-      'You are now signed in'
-    else
-      'Incorrect password'
-    end
+    user = User.signin(email: params[:email], password: params[:password])
+    User.find(user.id)
+    session[:id] = user.id
+    p "sessiona after signin:"
+    p session
+    redirect '/sign-in'
   end
   
   get '/available' do
@@ -52,5 +44,9 @@ class MakersBnb < Sinatra::Base
     erb :viewing_rooms
   end
 
+  post '/logoff' do
+    session.clear
+    redirect '/'
+  end
   run! if app_file == $0
 end

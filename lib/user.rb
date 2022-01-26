@@ -28,5 +28,10 @@ class User
     User.new(id: result[0]['id'], email: result[0]['email'], password: result[0]['pass'])
   end
  
+  def self.signin(email:, password:)
+    result = Database.query("Select * from users where email = $1;",[email])
+    User.new(id: result[0]['id'], email: result[0]['email'], password: result[0]['pass'])
+  end
+   
 end
 

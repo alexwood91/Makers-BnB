@@ -1,6 +1,15 @@
+<% if @user %>
+  <h1>You are signed-in, <%= @user.email %></h1>
+<% end %>
 <form action="/sign-in" method="post">
   <input type="text" name="email" placeholder="E-Mail:" /><br>
   <input type="password" name="password" placeholder="Password:" /><br>
   <br><br>
   <input type="submit" value="Sign In" /><br>
+</form>
+<br>
+<br>
+<form action="/logoff" method="post">
+  <input type="submit" value="logoff" /><br>
+    
 </form>

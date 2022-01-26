@@ -1,8 +1,6 @@
  <% if @user %>
   <h1>Welcome, <%= @user.email %></h1>
-  <% else %>
-  <h1>Welcome </h1>
-<% end %>
+ <% end %>
 
 <form action="/register" method="post">
   <input type="text" name="email" placeholder="E-Mail:" /><br>
@@ -14,3 +12,7 @@
 </form>
 <br>
 <br>
+<form action="/logoff" method="post">
+  <input type="submit" value="logoff" /><br>
+    
+</form>
