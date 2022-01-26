@@ -39,9 +39,18 @@ class MakersBnb < Sinatra::Base
     end
   end
   
-  get '/available' do
+  get '/rooms' do
     @rooms = Room.all
     erb :viewing_rooms
+  end
+
+  post '/rooms' do
+    Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto])
+    redirect '/rooms'
+  end
+
+  get '/rooms/new' do
+    erb :new
   end
 
   run! if app_file == $0
