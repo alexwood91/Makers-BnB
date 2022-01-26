@@ -11,7 +11,7 @@ class MakersBnb < Sinatra::Base
   end
 
   before do
-    @user = User.find(session[:id])
+    @user = User.find_id(session[:id])
   end
 
   get '/' do
@@ -29,15 +29,19 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/sessions/new' do
+    @error = params[:error]
     @registered = !params[:registered].nil?
     erb :'/sessions/new'
   end
 
   post '/sessions' do
     user = User.signin(email: params[:email], password: params[:password])
-    User.find(user.id)
-    session[:id] = user.id
-    redirect '/'
+    if user
+      session[:id] = user.id
+      redirect '/'
+    else
+      redirect '/sessions/new?error=password'
+    end
   end
 
   post '/sessions/delete' do

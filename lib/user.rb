@@ -21,21 +21,26 @@ class User
     )
     User.new(id: result[0]['id'], email: result[0]['email'], password: result[0]['pass'])
   end
- 
-  def self.find(id)
-    return nil unless id
 
-    result = Database.query("select id, email, pass from users where id = $1;", [id])
+  def self.find(params)
+    return nil if params.empty?
 
-    return nil unless result.count > 0
+    kv_pairs = params.to_a
+    columns = kv_pairs.map.with_index(1) { |pair, index| "#{pair[0]}=$#{index}" }.join(', ')
+    values = kv_pairs.map { |pair| pair[1] }
 
-    User.new(id: result[0]['id'], email: result[0]['email'], password: result[0]['pass'])
+    result = Database.query("SELECT * FROM users WHERE #{columns};", values)
+    result.map { |row| User.new(id: row['id'], email: row['email'], password: row['pass']) }
   end
- 
+
+  def self.find_id(id)
+    find(id: id).first
+  end
+
   def self.signin(email:, password:)
-    result = Database.query("Select * from users where email = $1;",[email])
-    User.new(id: result[0]['id'], email: result[0]['email'], password: result[0]['pass'])
-  end
-   
-end
+    user = find(email: email).first
+    return nil unless user && BCrypt::Password.new(user.password) == password
 
+    user
+  end
+end
