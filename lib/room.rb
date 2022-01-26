@@ -21,7 +21,7 @@ class Room
   end
 
   def self.create(name:, description:, price:, datefrom:, dateto:)
-    result = Database.query("INSERT INTO rooms (name, description, price, datefrom, dateto) VALUES('#{name}', '#{description}', '#{price}', '#{datefrom}', '#{dateto}')  RETURNING id, name, description, price;")
+    result = Database.query("INSERT INTO rooms (name, description, price, datefrom, dateto) VALUES($1, $2, $3, $4, $5) RETURNING id, name, description, price;", [name, description, price, datefrom, dateto])
     Room.new(id: result[0]['id'], name: result[0]['name'], description: result[0]['description'], price: result[0]['price'], datefrom: result[0]['datefrom'], dateto: result[0]['dateto'])
   end
 end
