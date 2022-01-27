@@ -1,12 +1,16 @@
-<% if @error && @error == 'password' %>
-  <h1>Incorrect password</h1>
-<% end %>
-<% if @registered %>
-  <h1>Thank you for registering - please log in</h1>
-<% end %>
-<% if @user %>
-  <h1>You are signed-in, <%= @user.email %></h1>
-<% end %>
+<% 
+  messages = {
+    status_registered: 'Thank you for registering - please log in',
+    error_wrong_password: 'Incorrect password',
+  }
+  flash.each do |type, message_id|
+    if messages[message_id]
+%>
+<h1><%= messages[message_id] %></h1>
+<%  
+    end
+  end
+%>
 <form action="/sessions" method="post">
   <input type="text" name="email" placeholder="E-Mail:" /><br>
   <input type="password" name="password" placeholder="Password:" /><br>
