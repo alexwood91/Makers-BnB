@@ -25,14 +25,21 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/users' do
+    error = :error_password_confirm if params[:password] != params[:password_confirm]
+    error = :error_password_length if params[:password].length < 8
+    error = :error_valid_email unless params[:email].index(/.+@.+\..+/)
+    if error
+      flash[:error] = error
+      return redirect '/users/new'
+    end
+
     User.create(email: params[:email], password: params[:password])
     session.clear
-    redirect '/sessions/new?registered=true'
+    flash[:status] = :status_registered
+    redirect '/sessions/new'
   end
 
   get '/sessions/new' do
-    @error = params[:error]
-    @registered = !params[:registered].nil?
     erb :'/sessions/new'
   end
 
@@ -42,7 +49,8 @@ class MakersBnb < Sinatra::Base
       session[:id] = user.id
       redirect '/'
     else
-      redirect '/sessions/new?error=password'
+      flash[:error] = :error_wrong_password
+      redirect '/sessions/new'
     end
   end
 
