@@ -38,7 +38,7 @@ class MakersBnb < Sinatra::Base
     user = User.signin(email: params[:email], password: params[:password])
     if user
       session[:id] = user.id
-      redirect '/'
+      redirect '/rooms'
     else
       redirect '/sessions/new?error=password'
     end
