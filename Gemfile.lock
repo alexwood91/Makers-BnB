@@ -4,10 +4,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ansi (1.5.0)
-<<<<<<< HEAD
     ast (2.4.2)
-=======
->>>>>>> e7e89ff3a82eeef79da53c2e7192e28575a0c676
     bcrypt (3.1.16)
     capybara (3.36.0)
       addressable
