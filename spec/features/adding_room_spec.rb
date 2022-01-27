@@ -1,5 +1,6 @@
 feature 'adding a new room' do
   scenario 'A user can add a room to the list' do
+    setup_test_user
     visit ('/rooms/new')
     fill_in('new_room', with: 'Apartment')
     fill_in('description', with: '2 beds, 1 bath')

@@ -1,9 +1,8 @@
-Welcome to Makers BnB!<br/>
-<a>--------------------------------</a>
-<br>
-<a href='/rooms/new'>Make new room</a> <a>----</a> <a href='/rooms/manage'>Manage rooms</a> 
-<br>
-<br>
+
+<% if @user %>
+  <h1>Welcome, <%= @user.email %> to Makers BnB!</h1><br/>
+  <a href='/rooms/new'>Make new room</a><br/> - <a href='/rooms/manage'>Manage rooms</a>
+<% end %>
 Here's what's currently available:<br/>
 <ul>
   <% @rooms.each do |room| %>
@@ -17,4 +16,3 @@ Here's what's currently available:<br/>
   </li>
   <% end %>
   </ul>
-  

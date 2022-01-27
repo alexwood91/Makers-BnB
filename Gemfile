@@ -9,8 +9,6 @@ gem 'pg'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-flash'
-gem 'rspec'
-gem 'capybara'
 gem 'webrick'
 
 group :test, :development do
