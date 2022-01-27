@@ -13,7 +13,7 @@ class MakersBnb < Sinatra::Base
   end
 
   before do
-    @user = User.find_id(session[:id])
+    @user = User.find_userid(session[:userid])
   end
 
   get '/' do
@@ -54,8 +54,8 @@ class MakersBnb < Sinatra::Base
   post '/sessions' do
     user = User.signin(email: params[:email], password: params[:password])
     if user
-      session[:id] = user.id
-      redirect '/'
+      session[:userid] = user.userid
+      redirect '/rooms'
     else
       flash[:error] = :error_wrong_password
       redirect '/sessions/new'
@@ -69,16 +69,24 @@ class MakersBnb < Sinatra::Base
   
   get '/rooms' do
     @rooms = Room.all
-    erb :viewing_rooms
+    erb :'rooms/index'
   end
 
   post '/rooms' do
-    Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto])
-    redirect '/rooms'
+    if @user
+      Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto], userid: @user.userid)
+      redirect '/rooms'
+    else
+      redirect'/sessions/new'
+    end
   end
 
   get '/rooms/new' do
-    erb :new
+    if @user
+      erb :'rooms/new'
+    else
+      redirect '/sessions/new'
+    end
   end
 
   run! if app_file == $0

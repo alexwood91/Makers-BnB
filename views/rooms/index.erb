@@ -1,5 +1,8 @@
-Welcome to Makers BnB!<br/>
+<% if @user %>
+  <h1>Welcome, <%= @user.email %> to Makers BnB!</h1><br/>
+
 <a href='/rooms/new'>Make new room</a><br/>
+  <% end %>
 Here's what's currently available:<br/>
 <ul>
   <% @rooms.each do |room| %>
