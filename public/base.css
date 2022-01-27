@@ -1,0 +1,43 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+:root {
+  --background: #00539C;
+  --text: #EEA47F;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica', 'Arial';
+}
+
+#header {
+  background-color: var(--text);
+  color: var(--background);
+  height: 3em;
+  padding: 0.8em 1.2em 0.8em 1.2em;
+  margin: 0 1em 0 1em;
+  border-radius: 0 0 0.5em 0.5em;
+  font-size: larger;
+}
+
+#content {
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+#room {
+  width: 20em;
+  height: 4em;
+  border: 1px solid #EEA47F;
+  margin: 1em;
+  border-radius: 0.25em;
+  padding: 0.5em;
+}
