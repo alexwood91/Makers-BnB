@@ -64,6 +64,7 @@ class MakersBnb < Sinatra::Base
 
   post '/sessions/delete' do
     session.clear
+    flash[:status] = :status_signed_out
     redirect '/'
   end
   

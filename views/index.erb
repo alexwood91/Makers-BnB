@@ -1,9 +1,9 @@
  <% if @user %>
   <h1>Welcome, <%= @user.email %></h1>
-
-  <form action="/sessions/delete" method="post">
-    <input type="submit" value="Log Off" /><br>
-  </form>
+  <a href="/rooms">View Rooms</a>
 <% else %>
+  <% if flash[:status] == :status_signed_out %>
+    <h1>You have signed out</h1>
+  <% end %>
   <a href="/users/new">Register</a> or <a href="/sessions/new">Log-in</a>
  <% end %>
