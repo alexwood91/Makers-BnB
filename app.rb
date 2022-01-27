@@ -93,7 +93,7 @@ class MakersBnb < Sinatra::Base
   get '/rooms/manage' do
     @user = User.find_id(session[:id])
     @rooms = Room.all
-    erb :manage_rooms
+    erb :'/rooms/manage'
   end
   
   post '/rooms/delete' do
