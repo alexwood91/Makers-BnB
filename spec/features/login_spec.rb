@@ -52,7 +52,6 @@ feature 'user login' do
     fill_in('email', with: 'example@example.com')
     fill_in('password', with: 'Seekrit')
     click_button('Sign In')
-
     expect(page).to have_content 'Welcome, example@example.com'
 
     click_button('Log Off')

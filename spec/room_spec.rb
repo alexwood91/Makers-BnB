@@ -25,7 +25,7 @@ describe Room do
   describe '.create' do
     it 'creates a new room' do
       room = Room.create(name: 'Apartment', description: '2 beds, 1 bath', price: '100.99', datefrom: '2022-10-29', dateto: '2022-10-30', userid:@userid)
-      persisted_data = persisted_data(roomid: room.roomid)
+      persisted_data = persisted_room_data(roomid: room.roomid)
 
       expect(room).to be_a Room
       expect(room.roomid).to eq persisted_data['roomid']
