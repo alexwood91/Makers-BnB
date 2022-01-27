@@ -44,4 +44,19 @@ feature 'user login' do
     visit('/users/new')
     expect(page).to have_content 'Welcome, example@example.com'
   end
+
+  scenario 'user signs in and out' do
+    User.create(email: 'example@example.com', password: 'Seekrit')
+
+    visit('/sessions/new')
+    fill_in('email', with: 'example@example.com')
+    fill_in('password', with: 'Seekrit')
+    click_button('Sign In')
+
+    expect(page).to have_content 'Welcome, example@example.com'
+
+    click_button('Log Off')
+
+    expect(page).to have_content 'Register or Log-in'
+  end
 end
