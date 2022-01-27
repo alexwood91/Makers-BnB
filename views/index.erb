@@ -2,5 +2,8 @@
   <h1>Welcome, <%= @user.email %></h1>
   <a href="/rooms">View Rooms</a>
 <% else %>
+  <% if flash[:status] == :status_signed_out %>
+    <h1>You have signed out</h1>
+  <% end %>
   <a href="/users/new">Register</a> or <a href="/sessions/new">Log-in</a>
  <% end %>

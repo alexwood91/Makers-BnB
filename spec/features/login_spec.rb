@@ -57,6 +57,7 @@ feature 'user login' do
 
     click_button('Log Off')
 
+    expect(page).to have_content 'You have signed out'
     expect(page).to have_content 'Register or Log-in'
   end
 end
