@@ -2,37 +2,51 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'setup_database'
 require './lib/room'
+require './lib/user'
 
 class MakersBnb < Sinatra::Base
-  configure :test, :development do
+  enable :sessions # make sessions hash available
+    configure :test, :development do
     register Sinatra::Reloader
   end
 
-  get '/register' do
+  before do
+    @user = User.find_id(session[:id])
+  end
+
+  get '/' do
+    erb :index
+  end
+
+  get '/users/new' do
+    erb :'/users/new'
+  end
+
+  post '/users' do
+    User.create(email: params[:email], password: params[:password])
+    session.clear
+    redirect '/sessions/new?registered=true'
+  end
+
+  get '/sessions/new' do
+    @error = params[:error]
     @registered = !params[:registered].nil?
-    erb :register
+    erb :'/sessions/new'
   end
 
-  post '/register' do
-    @email = params[:email]
-    @password = params[:password]
-    Database.query('INSERT INTO users (email, pass) VALUES ($1, $2);', [@email, @password])
-    redirect '/register?registered=1'
-  end
-
-  get '/sign-in' do
-    erb :'sign-in'
-  end
-
-  post '/sign-in' do
-    @email = params[:email]
-    @password = params[:password]
-    result = Database.query('SELECT email, pass FROM users WHERE email=$1;', [@email])
-    if result.ntuples >= 1 && result[0]['pass'] == @password
-      'You are now signed in'
+  post '/sessions' do
+    user = User.signin(email: params[:email], password: params[:password])
+    if user
+      session[:id] = user.id
+      redirect '/'
     else
-      'Incorrect password'
+      redirect '/sessions/new?error=password'
     end
+  end
+
+  post '/sessions/delete' do
+    session.clear
+    redirect '/'
   end
   
   get '/rooms' do
