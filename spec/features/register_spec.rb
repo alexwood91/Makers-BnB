@@ -24,7 +24,7 @@ feature 'User registration' do
     fill_in('password_confirm', with: 'Seekrit1')
     click_button('save')
 
-    expect(page).to have_content 'You must enter an email address'
+    expect(page).to have_content 'You must enter a valid email address'
   end
   scenario 'User enters short password' do
     visit('/users/new')
@@ -33,6 +33,6 @@ feature 'User registration' do
     fill_in('password_confirm', with: 'pass')
     click_button('save')
 
-    expect(page).to have_content 'Password too short - 8 character minimum'
+    expect(page).to have_content 'Password too short - 8 characters minimum'
   end
 end
