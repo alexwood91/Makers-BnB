@@ -40,7 +40,11 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/sessions/new' do
-    erb :'/sessions/new'
+    if @user
+      redirect '/'
+    else
+      erb :'/sessions/new'
+    end
   end
 
   post '/sessions' do
