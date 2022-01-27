@@ -97,9 +97,8 @@ class MakersBnb < Sinatra::Base
   end
   
   post '/rooms/delete' do
-  p params
-  Room.delete(id: params[:roomid] )
-  redirect 'rooms/manage'
+    Room.delete(id: params[:roomid] )
+    redirect 'rooms/manage'
   end
   
 
