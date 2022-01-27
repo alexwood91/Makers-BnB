@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require 'sinatra/reloader'
 require_relative 'setup_database'
 require './lib/room'
@@ -8,6 +9,7 @@ class MakersBnb < Sinatra::Base
   enable :sessions # make sessions hash available
     configure :test, :development do
     register Sinatra::Reloader
+    register Sinatra::Flash
   end
 
   before do

@@ -3,8 +3,8 @@ GEM
   specs:
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    bcrypt (3.1.16)
     ansi (1.5.0)
+    bcrypt (3.1.16)
     capybara (3.36.0)
       addressable
       matrix
@@ -71,6 +71,8 @@ GEM
       rack-protection (= 2.1.0)
       sinatra (= 2.1.0)
       tilt (~> 2.0)
+    sinatra-flash (0.3.0)
+      sinatra (>= 1.0.0)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
     tilt (2.0.10)
@@ -93,6 +95,7 @@ DEPENDENCIES
   simplecov-console
   sinatra
   sinatra-contrib
+  sinatra-flash
   webrick
 
 BUNDLED WITH
