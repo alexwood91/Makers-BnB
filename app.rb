@@ -11,7 +11,7 @@ class MakersBnb < Sinatra::Base
   end
 
   before do
-    @user = User.find_id(session[:id])
+    @user = User.find_userid(session[:userid])
   end
 
   get '/' do
@@ -37,7 +37,7 @@ class MakersBnb < Sinatra::Base
   post '/sessions' do
     user = User.signin(email: params[:email], password: params[:password])
     if user
-      session[:id] = user.id
+      session[:userid] = user.userid
       redirect '/rooms'
     else
       redirect '/sessions/new?error=password'

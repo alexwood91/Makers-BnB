@@ -12,7 +12,7 @@ describe Room do
       rooms = Room.all
       expect(rooms.length).to eq 3
       expect(rooms.first).to be_a Room
-      expect(rooms.first.id).to eq room1.id
+      expect(rooms.first.roomid).to eq room1.roomid
       expect(rooms.first.name).to eq 'Apartment'
       expect(rooms.first.description).to eq '2 beds, 1 bath'
       expect(rooms.first.price).to eq '100.99'
@@ -25,10 +25,10 @@ describe Room do
   describe '.create' do
     it 'creates a new room' do
       room = Room.create(name: 'Apartment', description: '2 beds, 1 bath', price: '100.99', datefrom: '2022-10-29', dateto: '2022-10-30')
-      persisted_data = persisted_data(id: room.id)
+      persisted_data = persisted_data(roomid: room.roomid)
 
       expect(room).to be_a Room
-      expect(room.id).to eq persisted_data['id']
+      expect(room.roomid).to eq persisted_data['roomid']
       expect(room.name).to eq 'Apartment'
     end
   end  
