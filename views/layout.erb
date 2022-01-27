@@ -7,6 +7,11 @@
   <body>
     <div id="header">
       <a href="/">MakersBnB</a>
+      <% if @user %>
+        <form action="/sessions/delete" method="post">
+          <input type="submit" value="Log Off" />
+        </form>
+      <% end %>
     </div>
     <div id="content">
       <%= yield %>

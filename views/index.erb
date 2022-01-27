@@ -1,9 +1,5 @@
  <% if @user %>
   <h1>Welcome, <%= @user.email %></h1>
-
-  <form action="/sessions/delete" method="post">
-    <input type="submit" value="Log Off" /><br>
-  </form>
 <% else %>
   <a href="/users/new">Register</a> or <a href="/sessions/new">Log-in</a>
  <% end %>
