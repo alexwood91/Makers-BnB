@@ -23,6 +23,11 @@ a {
   color: var(--link);
 }
 
+#container {
+  max-width: 80em;
+  margin: 0 auto 0 auto;
+}
+
 #header {
   background-color: var(--text);
   color: var(--background);
