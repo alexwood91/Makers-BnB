@@ -1,14 +1,21 @@
+<% 
+  messages = {
+    error_password_confirm: 'Passwords do not match',
+    error_password_length: 'Password too short - 8 characters minimum',
+    error_valid_email: 'You must enter a valid email address'
+  }
+  flash.each do |type, message_id|
+    if messages[message_id]
+%>
+<h1><%= messages[message_id] %></h1>
+<%  
+    end
+  end
+%>
 <form action="/users" method="post">
   <input type="text" name="email" placeholder="E-Mail:" /><br>
   <input type="password" name="password" placeholder="Password:" /><br>
   <input type="password" name="password_confirm" placeholder="Confirm Password" /><br>
   <br><br>
   <input type="submit" value="save" /><br>
-      
-</form>
-<br>
-<br>
-<form action="/logoff" method="post">
-  <input type="submit" value="logoff" /><br>
-    
 </form>
