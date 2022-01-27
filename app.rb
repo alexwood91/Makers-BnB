@@ -27,7 +27,7 @@ class MakersBnb < Sinatra::Base
   post '/users' do
     error = :error_password_confirm if params[:password] != params[:password_confirm]
     error = :error_password_length if params[:password].length < 8
-    error = :error_valid_email unless params[:email].index(/.+@.+\..+/)
+    error = :error_valid_email unless params[:email] =~ URI::MailTo::EMAIL_REGEXP
     if error
       flash[:error] = error
       return redirect '/users/new'
