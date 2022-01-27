@@ -6,7 +6,7 @@ require './lib/user'
 
 class MakersBnb < Sinatra::Base
   enable :sessions # make sessions hash available
-  configure :development do
+    configure :test, :development do
     register Sinatra::Reloader
   end
 

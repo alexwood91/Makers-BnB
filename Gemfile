@@ -12,3 +12,6 @@ gem 'webrick'
 gem 'pg'
 gem 'bcrypt'
 gem 'launchy'
+gem 'simplecov'
+gem 'simplecov-console'
+
