@@ -46,7 +46,7 @@ a {
 #room {
   width: 20em;
   height: 4em;
-  border: 1px solid #EEA47F;
+  border: 1px solid var(--text);
   margin: 1em;
   border-radius: 0.25em;
   padding: 0.5em;
