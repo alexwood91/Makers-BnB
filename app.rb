@@ -55,12 +55,20 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/rooms' do
-    Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto])
+    if @user
+    Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto], userid: @user.userid)
     redirect '/rooms'
+    else
+      redirect'/sessions/new'
+    end
   end
 
   get '/rooms/new' do
+    if @user
     erb :new
+    else
+      redirect '/sessions/new'
+    end
   end
 
   run! if app_file == $0
