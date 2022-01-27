@@ -8,6 +8,7 @@ html {
 :root {
   --background: #00539C;
   --text: #EEA47F;
+  --link: white;
 }
 
 body {
@@ -16,6 +17,10 @@ body {
   padding: 0;
   margin: 0;
   font-family: 'Helvetica', 'Arial';
+}
+
+a {
+  color: var(--link);
 }
 
 #header {
