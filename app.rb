@@ -51,13 +51,13 @@ class MakersBnb < Sinatra::Base
   
   get '/rooms' do
     @rooms = Room.all
-    erb :viewing_rooms
+    erb :'rooms/index'
   end
 
   post '/rooms' do
     if @user
-    Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto], userid: @user.userid)
-    redirect '/rooms'
+      Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto], userid: @user.userid)
+      redirect '/rooms'
     else
       redirect'/sessions/new'
     end
@@ -65,7 +65,7 @@ class MakersBnb < Sinatra::Base
 
   get '/rooms/new' do
     if @user
-    erb :new
+      erb :'rooms/new'
     else
       redirect '/sessions/new'
     end
