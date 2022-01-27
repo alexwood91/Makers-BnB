@@ -33,6 +33,11 @@ a {
   font-size: larger;
 }
 
+#header a {
+  text-decoration: none;
+  color: var(--background);
+}
+
 #content {
   margin-left: 2em;
   margin-top: 1em;
