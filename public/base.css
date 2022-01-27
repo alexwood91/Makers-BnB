@@ -38,6 +38,10 @@ a {
   color: var(--background);
 }
 
+#header form {
+  float: right;
+}
+
 #content {
   margin-left: 2em;
   margin-top: 1em;
