@@ -81,5 +81,17 @@ class MakersBnb < Sinatra::Base
     erb :new
   end
 
+  get '/rooms/request' do
+    @rooms = Room.all
+    erb :request
+  end
+  
+  post '/rooms/request' do
+    @rooms = Room.all
+    @bookfrom = params[:bookfrom]
+    @bookto = params[:bookto]
+    erb :confirmed_request
+  end
+
   run! if app_file == $0
 end
