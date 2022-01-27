@@ -21,7 +21,11 @@ class MakersBnb < Sinatra::Base
   end
 
   get '/users/new' do
-    erb :'/users/new'
+    if @user
+      redirect '/'
+    else
+      erb :'/users/new'
+    end
   end
 
   post '/users' do
