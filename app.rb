@@ -62,6 +62,19 @@ class MakersBnb < Sinatra::Base
   get '/rooms/new' do
     erb :new
   end
+  
+  get '/rooms/manage' do
+    @user = User.find_id(session[:id])
+    @rooms = Room.all
+    erb :manage_rooms
+  end
+  
+  post '/rooms/delete' do
+  p params
+  Room.delete(id: params[:roomid] )
+  redirect 'rooms/manage'
+  end
+  
 
   run! if app_file == $0
 end
