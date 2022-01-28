@@ -20,9 +20,9 @@ Date: <input type="date" name="bookto" value= "<%= @bookto %>">
       £<%= room.price %><br/>
       <form action="/rooms/request" method='post'>
         <input type="submit" value="Request">
-        <input type="date" name="bookstart" value= "<%= @bookfrom %>">
-        <input type="date" name="bookend" value= "<%= @bookto %>">
-        <input type="text" name="roomid" value= "<%= room.roomid %>">
+        <input type="hidden" name="bookstart" value= "<%= @bookfrom %>">
+        <input type="hidden" name="bookend" value= "<%= @bookto %>">
+        <input type="hidden" name="roomid" value= "<%= room.roomid %>">
         </a>
       </form>
     </li>
