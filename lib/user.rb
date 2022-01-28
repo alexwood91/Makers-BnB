@@ -12,9 +12,7 @@ class User
   end
 
   def self.create(email:, password:)
-    
-     encrypted_password = BCrypt::Password.create(password)
-    
+    encrypted_password = BCrypt::Password.create(password)    
     result = Database.query(
       "INSERT INTO users (email, pass) VALUES($1, $2) RETURNING userid, email, pass;",
       [email, encrypted_password]
@@ -40,7 +38,6 @@ class User
   def self.signin(email:, password:)
     user = find(email: email).first
     return nil unless user && BCrypt::Password.new(user.password) == password
-
     user
   end
 end

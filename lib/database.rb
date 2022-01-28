@@ -5,8 +5,8 @@ class Database
     @connection = PG.connect(dbname: database_name)
   end
 
-  def self.connection
-    @connection
+  class << self
+    attr_reader :connection
   end
 
   def self.query(query, params = [])

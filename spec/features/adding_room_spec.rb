@@ -22,6 +22,5 @@ feature 'adding a new room' do
     fill_in('dateto', with: '2022-12-21')
     click_button('Submit')
     expect(page).to have_content('Please complete all fields')
-
   end
 end

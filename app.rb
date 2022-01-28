@@ -7,7 +7,7 @@ require './lib/user'
 
 class MakersBnb < Sinatra::Base
   enable :sessions 
-    configure :test, :development do
+  configure :test, :development do
     register Sinatra::Reloader
     register Sinatra::Flash
   end
@@ -74,23 +74,29 @@ class MakersBnb < Sinatra::Base
   end
 
   post '/rooms' do
-    error = :error_empty_name if params[:new_room].length == 0
-    error = :error_empty_desc if params[:description].length == 0
-    error = :error_empty_price if params[:price].length == 0
-      if @user
-      Room.create(name: params[:new_room], description: params[:description], price: params[:price], datefrom: params[:datefrom], dateto: params[:dateto], userid: @user.userid)
+    error = :error_empty_name if params[:new_room].empty?
+    error = :error_empty_desc if params[:description].empty?
+    error = :error_empty_price if params[:price].empty?
+    if @user
+      Room.create(
+        name: params[:new_room],
+        description: params[:description],
+        price: params[:price],
+        datefrom: params[:datefrom],
+        dateto: params[:dateto],
+        userid: @user.userid
+      )
       if error
         flash[:error] = error
         return redirect '/rooms/new'
       else
-      redirect '/rooms'
+        redirect '/rooms'
       end
       
     else
-      redirect'/sessions/new'
+      redirect '/sessions/new'
     end
   end
-
 
   get '/rooms/new' do
     if @user
@@ -106,7 +112,7 @@ class MakersBnb < Sinatra::Base
   end
   
   post '/rooms/delete' do
-    Room.delete(id: params[:roomid] )
+    Room.delete(id: params[:roomid])
     redirect 'rooms/manage'
   end
   
