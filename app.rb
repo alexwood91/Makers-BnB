@@ -64,6 +64,7 @@ class MakersBnb < Sinatra::Base
 
   post '/sessions/delete' do
     session.clear
+    flash[:status] = :status_signed_out
     redirect '/'
   end
   
@@ -87,6 +88,18 @@ class MakersBnb < Sinatra::Base
     else
       redirect '/sessions/new'
     end
+  end
+
+  get '/rooms/request' do
+    @rooms = Room.all
+    erb :'rooms/request'
+  end
+  
+  post '/rooms/request' do
+    @rooms = Room.all
+    @bookfrom = params[:bookfrom]
+    @bookto = params[:bookto]
+    erb :'rooms/confirmed_request'
   end
 
   run! if app_file == $0

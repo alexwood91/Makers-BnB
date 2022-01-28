@@ -11,12 +11,9 @@ Here's what's currently available:<br/>
   <%= room.description %><br/>
   Price:<br/>
   £<%= room.price %><br/>
-  <a href="/request"><button>Request</button>
+  <form action="/rooms/request">
+  <input type="submit" value="Request">
   </a>
   </li>
   <% end %>
   </ul>
-  <form action="/sessions/delete" method="post">
-  <input type="submit" value="Log Off" />
-</form>
-  

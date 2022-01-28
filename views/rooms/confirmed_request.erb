@@ -1,0 +1,19 @@
+<br><br><br><br><br>
+
+<center><h3>Your Request<br></center>
+
+<center>
+  <% @rooms.each do |room| %>
+  <%= room.name %><br/>
+  Description:
+  <%= room.description %><br/>
+  <% end %>
+  
+  <br></center>
+
+<h3><center>From <%= @bookfrom %> to <%= @bookto %>
+<p>The owner will be in contact shortly.</p></center></h3>
+
+<form action="/rooms" align="center">
+<input type="submit" value="Return To Main Page">
+</form>
