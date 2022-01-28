@@ -1,3 +1,17 @@
+<% 
+  messages = {
+    error_empty_name: 'Please complete all fields',
+    error_empty_desc: 'Please complete all fields',
+    error_empty_price: 'Please complete all fields'
+  }
+  flash.each do |type, message_id|
+    if messages[message_id]
+%>
+<h1><%= messages[message_id] %></h1>
+<%  
+    end
+  end
+%>
 <form action="/rooms" method="post">
   <input type="text" name="new_room" placeholder="Name of room" />
   <input type="text" name="description" placeholder="Describe your room..." />
@@ -7,4 +21,5 @@
     Available To
   <input type="date" name="dateto" value="Date.today" min="2022-01-01" max="2022-12-31" />
   <input type="submit" value="Submit" />
-</form>
+  </form>
+  
