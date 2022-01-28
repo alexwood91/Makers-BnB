@@ -1,1 +1,1 @@
-CREATE TABLE bookings (bookingid SERIAL PRIMARY KEY, name VARCHAR(60), bookfrom DATE, bookto DATE, approved BOOLEAN, Userid INTEGER REFERENCES users(userid), Roomid INTEGER REFERENCES rooms(roomid));
+CREATE TABLE bookings (bookingid SERIAL PRIMARY KEY, bookfrom DATE, bookto DATE, approved BOOLEAN, Userid INTEGER REFERENCES users(userid), Roomid INTEGER REFERENCES rooms(roomid));
