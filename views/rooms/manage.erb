@@ -1,0 +1,21 @@
+<% if @user%>
+<h3> Manage your rooms <%= @user.email%> :</h3>
+<% end %>
+<ul>
+  <% @rooms.each do |room| %>
+  <li><%= room.name %><br/>
+  Description:<br/>
+  <%= room.description %><br/>
+  Price:
+  £<%= room.price %><br/>
+  <a href="/rooms/new"><button>Add</button></a>
+  <form action="/rooms/delete" method="post">
+  <input type="hidden" id="room_id" name="roomid" value=<%=room.roomid%>>
+  <input type="submit" value="Delete" /> </form>     
+  </li>
+  <% end %>
+  </ul>
+
+  
+
+    
