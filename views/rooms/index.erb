@@ -2,8 +2,8 @@
 <% if @user %>
   <h1>Welcome, <%= @user.email %> to Makers BnB!</h1><br/>
 
-<a href='/rooms/new'>Make new room</a><br/> - <a href='/rooms/manage'>Manage rooms</a>
-<% end %>
+<a href='/rooms/new'>Make new room</a><br/><a href='/rooms/manage'>Manage rooms</a>
+<% end %><br/>
 What dates are you looking to book?<br/>
 <form action="/rooms" align="center">
 <label for="Check in Date">Check In</label>
