@@ -3,6 +3,7 @@ require 'simplecov-console'
 
 # Set the environment to "test"
 require_relative './setup_test_database'
+require_relative './setup_test_user'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::Console,

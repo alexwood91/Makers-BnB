@@ -1,0 +1,62 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+:root {
+  --background: #00539C;
+  --text: #EEA47F;
+  --link: white;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  padding: 0;
+  margin: 0;
+  font-family: 'Helvetica', 'Arial';
+}
+
+a {
+  color: var(--link);
+}
+
+#container {
+  max-width: 80em;
+  margin: 0 auto 0 auto;
+}
+
+#header {
+  background-color: var(--text);
+  color: var(--background);
+  height: 3em;
+  padding: 0.8em 1.2em 0.8em 1.2em;
+  margin: 0 1em 0 1em;
+  border-radius: 0 0 0.5em 0.5em;
+  font-size: larger;
+}
+
+#header a {
+  text-decoration: none;
+  color: var(--background);
+}
+
+#header form {
+  float: right;
+}
+
+#content {
+  margin-left: 2em;
+  margin-top: 1em;
+}
+
+#room {
+  width: 20em;
+  height: 4em;
+  border: 1px solid var(--text);
+  margin: 1em;
+  border-radius: 0.25em;
+  padding: 0.5em;
+}

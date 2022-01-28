@@ -3,10 +3,10 @@ require 'bcrypt'
 
 class User
    
-  attr_reader :id, :email, :password
+  attr_reader :userid, :email, :password
 
-  def initialize(id:, email:, password:)
-    @id = id
+  def initialize(userid:, email:, password:)
+    @userid = userid
     @email = email
     @password = password
   end
@@ -16,10 +16,10 @@ class User
      encrypted_password = BCrypt::Password.create(password)
     
     result = Database.query(
-      "INSERT INTO users (email, pass) VALUES($1, $2) RETURNING id, email, pass;",
+      "INSERT INTO users (email, pass) VALUES($1, $2) RETURNING userid, email, pass;",
       [email, encrypted_password]
     )
-    User.new(id: result[0]['id'], email: result[0]['email'], password: result[0]['pass'])
+    User.new(userid: result[0]['userid'], email: result[0]['email'], password: result[0]['pass'])
   end
 
   def self.find(params)
@@ -30,11 +30,11 @@ class User
     values = kv_pairs.map { |pair| pair[1] }
 
     result = Database.query("SELECT * FROM users WHERE #{columns};", values)
-    result.map { |row| User.new(id: row['id'], email: row['email'], password: row['pass']) }
+    result.map { |row| User.new(userid: row['userid'], email: row['email'], password: row['pass']) }
   end
 
-  def self.find_id(id)
-    find(id: id).first
+  def self.find_userid(userid)
+    find(userid: userid).first
   end
 
   def self.signin(email:, password:)
