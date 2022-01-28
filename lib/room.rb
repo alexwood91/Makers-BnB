@@ -48,6 +48,21 @@ class Room
       userid: result[0]['userid']
     )
   end
+
+  def self.available(bookfrom, bookto)
+    result = Database.query("SELECT * FROM rooms WHERE datefrom <= $1 and dateto >= $2;", [bookfrom, bookto])   
+    result.map do |room|
+    Room.new(roomid: room['roomid'], name: room['name'], description: room['description'], price: room['price'], datefrom: room['datefrom'], dateto: room['dateto'], userid: room['userid'])
+    end
+  end
+
+  def self.find(roomid)
+    result = Database.query("SELECT * FROM rooms WHERE roomid = $1;", [roomid])
+    rooms = result.map do |room|
+      Room.new(roomid: room['roomid'], name: room['name'], description: room['description'], price: room['price'], datefrom: room['datefrom'], dateto: room['dateto'], userid: room['userid'])
+    end
+    rooms.first
+  end
   
   def self.delete(id:)
     result = Database.query(

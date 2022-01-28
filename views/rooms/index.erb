@@ -1,19 +1,34 @@
 
 <% if @user %>
   <h1>Welcome, <%= @user.email %> to Makers BnB!</h1><br/>
-  <a href='/rooms/new'>Make new room</a><br/> - <a href='/rooms/manage'>Manage rooms</a>
+
+<a href='/rooms/new'>Make new room</a><br/> - <a href='/rooms/manage'>Manage rooms</a>
 <% end %>
+What dates are you looking to book?<br/>
+<form action="/rooms" align="center">
+<label for="Check in Date">Check In</label>
+Date: <input type="date" name="bookfrom" value= "<%= @bookfrom %>">
+<label for="Check out Date">Check Out</label>
+Date: <input type="date" name="bookto" value= "<%= @bookto %>">
+<input type="submit" value="Search">
+</form>
+
 Here's what's currently available:<br/>
+
 <ul>
   <% @rooms.each do |room| %>
-  <li><%= room.name %><br/>
-  Description:<br/>
-  <%= room.description %><br/>
-  Price:<br/>
-  £<%= room.price %><br/>
-  <form action="/rooms/request">
-  <input type="submit" value="Request">
-  </a>
-  </li>
+    <li><%= room.name %><br/>
+      Description:<br/>
+      <%= room.description %><br/>
+      Price:<br/>
+      £<%= room.price %><br/>
+      <form action="/rooms/request" method='post'>
+        <input type="submit" value="Request">
+        <input type="hidden" name="bookstart" value= "<%= @bookfrom %>">
+        <input type="hidden" name="bookend" value= "<%= @bookto %>">
+        <input type="hidden" name="roomid" value= "<%= room.roomid %>">
+        </a>
+      </form>
+    </li>
   <% end %>
-  </ul>
+</ul>
