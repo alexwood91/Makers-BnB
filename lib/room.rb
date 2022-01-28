@@ -34,4 +34,12 @@ class Room
     Room.new(roomid: room['roomid'], name: room['name'], description: room['description'], price: room['price'], datefrom: room['datefrom'], dateto: room['dateto'], userid: room['userid'])
     end
   end
+
+  def self.find(roomid)
+    result = Database.query("SELECT * FROM rooms WHERE roomid = $1;", [roomid])
+    rooms = result.map do |room|
+      Room.new(roomid: room['roomid'], name: room['name'], description: room['description'], price: room['price'], datefrom: room['datefrom'], dateto: room['dateto'], userid: room['userid'])
+    end
+    rooms.first
+  end
 end
