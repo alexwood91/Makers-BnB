@@ -37,10 +37,10 @@ describe '.create' do
   end
 end
 
-  describe 'signin' do
-    it 'returns a user given a correct email and password' do
-      user = User.create(email: 'test@example.com', password: 'password123')
-      signedin_user = User.signin(email: 'test@example.com', password: 'password123')
-      expect(signedin_user.userid).to eq user.userid
-    end
+describe 'signin' do
+  it 'returns a user given a correct email and password' do
+    user = User.create(email: 'test@example.com', password: 'password123')
+    signedin_user = User.signin(email: 'test@example.com', password: 'password123')
+    expect(signedin_user.userid).to eq user.userid
   end
+end
