@@ -3,7 +3,14 @@
 
 <a href='/rooms/new'>Make new room</a><br/>
   <% end %>
-Here's what's currently available:<br/>
+What dates are you looking to book?<br/>
+<form action="/rooms" align="center">
+<label for="Check in Date">Check In</label>
+Date: <input type="date" name="bookfrom" value= "<%= @bookfrom %>">
+<label for="Check out Date">Check Out</label>
+Date: <input type="date" name="bookto" value= "<%= @bookto %>">
+<input type="submit" value="Request">
+</form>
 <ul>
   <% @rooms.each do |room| %>
   <li><%= room.name %><br/>

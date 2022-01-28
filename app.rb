@@ -69,7 +69,13 @@ class MakersBnb < Sinatra::Base
   end
   
   get '/rooms' do
-    @rooms = Room.all
+    @bookfrom = params[:bookfrom]
+    @bookto = params[:bookto]
+    if @bookfrom && @bookto 
+      @rooms = Room.available(@bookfrom, @bookto)
+    else
+      @rooms = Room.all
+    end
     erb :'rooms/index'
   end
 
