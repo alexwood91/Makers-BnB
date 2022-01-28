@@ -1,15 +1,6 @@
-<a href='/'><button>root</button></a><a>--</a><a href='/rooms'><button>rooms</button></a><a>--</a><a href='/rooms/new'><button>add rooms</button></a><a>--</a><br> <br><form action="/sessions/delete" method="post"> <input type="submit" value="logoff" /> </form>     
-<a>-------------------------------</a>  
 <% if @user%>
 <h3> Manage your rooms <%= @user.email%> :</h3>
-<a>-------------------------------</a>
-<% else %>
-<h3> Please login to list your rooms</h3>
-<a href='/sessions/new'>login</a><br>
-<a>-------------------------------</a>
 <% end %>
-<br>
-<br>
 <ul>
   <% @rooms.each do |room| %>
   <li><%= room.name %><br/>
@@ -17,9 +8,9 @@
   <%= room.description %><br/>
   Price:
   £<%= room.price %><br/>
-  <a href="/request"><button>Add</button></a>
+  <a href="/rooms/new"><button>Add</button></a>
   <form action="/rooms/delete" method="post">
-  <input type="hidden" id="room_id" name="roomid" value=<%=room.id%>>
+  <input type="hidden" id="room_id" name="roomid" value=<%=room.roomid%>>
   <input type="submit" value="Delete" /> </form>     
   </li>
   <% end %>

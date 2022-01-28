@@ -29,8 +29,14 @@ class Room
   end
   
   def self.delete(id:)
-    result = Database.query("delete from rooms where id = $1 RETURNING id, name, description, price;", [id])
-    Room.new(id: result[0]['id'], name: result[0]['name'], description: result[0]['description'], price: result[0]['price'], datefrom: result[0]['datefrom'], dateto: result[0]['dateto'])
+    result = Database.query("delete from rooms where roomid = $1 RETURNING roomid, name, description, price, datefrom, dateto, userid;", [id])
+    Room.new(roomid: result[0]['roomid'], name: result[0]['name'], description: result[0]['description'], price: result[0]['price'], datefrom: result[0]['datefrom'], dateto: result[0]['dateto'], userid: result[0]['userid'])
   end
-
+  
+  def self.find_mine(userid:)
+    result = Database.query("select * from rooms where rooms.userid = $1;", [userid])
+    result.map do |room|
+      Room.new(roomid: room['roomid'], name: room['name'], description: room['description'], price: room['price'], datefrom: room['datefrom'], dateto: room['dateto'], userid: room['userid'])
+    end 
+  end
 end
