@@ -6,7 +6,7 @@ require './lib/room'
 require './lib/user'
 
 class MakersBnb < Sinatra::Base
-  enable :sessions # make sessions hash available
+  enable :sessions 
     configure :test, :development do
     register Sinatra::Reloader
     register Sinatra::Flash
@@ -89,6 +89,17 @@ class MakersBnb < Sinatra::Base
       redirect '/sessions/new'
     end
   end
+  
+  get '/rooms/manage' do
+    @rooms = Room.find_mine(userid: session[:userid])
+    erb :'/rooms/manage'
+  end
+  
+  post '/rooms/delete' do
+    Room.delete(id: params[:roomid] )
+    redirect 'rooms/manage'
+  end
+  
 
   get '/rooms/request' do
     @rooms = Room.all
